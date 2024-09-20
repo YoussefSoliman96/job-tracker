@@ -2,6 +2,7 @@ import prisma from "@/prisma/client";
 import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import React from "react";
+import JobStatusBadge from "../components/JobStatusBadge";
 
 const JobsPage = async () => {
   const jobs = await prisma.job.findMany();
@@ -29,10 +30,12 @@ const JobsPage = async () => {
             <Table.Row key={job.id}>
               <Table.Cell>
                 {job.title}
-                <div className="block md:hidden">{job.status}</div>
+                <div className="block md:hidden">
+                  <JobStatusBadge status={job.status} />
+                </div>
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                {job.status}
+                <JobStatusBadge status={job.status} />
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
                 {job.createdAt.toDateString()}
