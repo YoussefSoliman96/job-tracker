@@ -47,7 +47,11 @@ const JobForm = () => {
       <form className="space-y-3" onSubmit={onSubmit}>
         <TextField.Root placeholder="Title" {...register("title")} />
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
-        <TextArea placeholder="Description" {...register("description")} />
+        <TextArea
+          placeholder="Description"
+          {...register("description")}
+          size="3"
+        />
 
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
 

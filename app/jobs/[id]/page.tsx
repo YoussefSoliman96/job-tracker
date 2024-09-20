@@ -1,6 +1,8 @@
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import JobDetails from "./JobDetails";
+import { Box, Flex, Grid } from "@radix-ui/themes";
+import DeleteJobButton from "./DeleteJobButton";
 
 interface Props {
   params: { id: string };
@@ -13,7 +15,18 @@ const JobDetailPage = async ({ params }: Props) => {
 
   if (!job) notFound();
 
-  return <JobDetails job={job} />;
+  return (
+    <Grid columns={{ initial: "1", sm: "5" }} gap="5">
+      <Box className="md:col-span-4">
+        <JobDetails job={job} />
+      </Box>
+      <Box>
+        <Flex direction="column" gap="4">
+          <DeleteJobButton jobId={job.id} />
+        </Flex>
+      </Box>
+    </Grid>
+  );
 };
 
 export default JobDetailPage;

@@ -4,9 +4,9 @@ import Skeleton from "@/app/components/Skeleton";
 
 const LoadingNewJobPage = () => {
   return (
-    <Box>
-      <Skeleton />
-      <Skeleton height="20rem" />
+    <Box className="max-w-xl">
+      <Skeleton width="36rem" height="2rem" />
+      <Skeleton height="7rem" />
     </Box>
   );
 };
