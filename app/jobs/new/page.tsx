@@ -1,6 +1,7 @@
 "use client";
 
 import ErrorMessage from "@/app/components/ErrorMessage";
+import Spinner from "@/app/components/Spinner";
 import { createJobSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Callout, Text, TextArea, TextField } from "@radix-ui/themes";
@@ -22,6 +23,7 @@ const NewJobPage = () => {
     resolver: zodResolver(createJobSchema),
   });
   const [error, setError] = useState("");
+  const [isSubmitting, setSubmitting] = useState(false);
   return (
     <div className="max-w-xl">
       {error && (
@@ -33,9 +35,11 @@ const NewJobPage = () => {
         className="space-y-3"
         onSubmit={handleSubmit(async (data) => {
           try {
+            setSubmitting(true);
             await axios.post("/api/jobs", data);
             router.push("/jobs");
           } catch (error) {
+            setSubmitting(false);
             setError("An unexpected error occurred");
           }
         })}
@@ -46,7 +50,9 @@ const NewJobPage = () => {
 
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
-        <Button>Submit New Job</Button>
+        <Button disabled={isSubmitting}>
+          Submit New Job{isSubmitting && <Spinner />}
+        </Button>
       </form>
     </div>
   );
