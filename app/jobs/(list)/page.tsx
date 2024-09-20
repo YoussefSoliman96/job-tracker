@@ -1,9 +1,11 @@
+import prisma from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
-import Skeleton from "../components/Skeleton";
-import JobActions from "./JobActions";
+import JobStatusBadge from "../../components/JobStatusBadge";
+import JobActions from "../JobActions";
 
-const LoadingJobsPage = () => {
-  const jobs = [1, 2, 3, 4, 5, 6, 7];
+const JobsPage = async () => {
+  const jobs = await prisma.job.findMany();
+
   return (
     <div>
       <JobActions />
@@ -21,18 +23,18 @@ const LoadingJobsPage = () => {
         </Table.Header>
         <Table.Body>
           {jobs.map((job) => (
-            <Table.Row key={job}>
+            <Table.Row key={job.id}>
               <Table.Cell>
-                <Skeleton />
+                {job.title}
                 <div className="block md:hidden">
-                  <Skeleton />
+                  <JobStatusBadge status={job.status} />
                 </div>
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                <Skeleton />
+                <JobStatusBadge status={job.status} />
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                <Skeleton />
+                {job.createdAt.toDateString()}
               </Table.Cell>
             </Table.Row>
           ))}
@@ -42,4 +44,4 @@ const LoadingJobsPage = () => {
   );
 };
 
-export default LoadingJobsPage;
+export default JobsPage;
