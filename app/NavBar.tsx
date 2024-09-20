@@ -1,8 +1,13 @@
+"use client";
+
+import classnames from "classnames";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { FaTasks } from "react-icons/fa";
 
 const NavBar = () => {
+  const currentPath = usePathname();
   const links = [
     { label: "Dashboard", href: "/" },
     { label: "Jobs", href: "/jobs" },
@@ -14,7 +19,14 @@ const NavBar = () => {
       </Link>
       <ul className="flex space-x-6">
         {links.map((link) => (
-          <Link key={link.label} href={link.href}>
+          <Link
+            key={link.label}
+            href={link.href}
+            className={classnames({
+              "nav-link": true,
+              "!text-zinc-900": link.href === currentPath,
+            })}
+          >
             {link.label}
           </Link>
         ))}
