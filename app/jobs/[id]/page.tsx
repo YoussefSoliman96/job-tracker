@@ -18,11 +18,11 @@ const JobDetailPage = async ({ params }: Props) => {
   return (
     <div>
       <Heading>{job.title}</Heading>
-      <Flex gap="3" my="2">
+      <Flex gap="3" my="2" className="items-center">
         <JobStatusBadge status={job.status} />
         <Text>{job.createdAt.toDateString()}</Text>
       </Flex>
-      <Card>
+      <Card mt="4" className="max-w-md">
         <p>{job.description}</p>
       </Card>
     </div>
