@@ -1,8 +1,7 @@
 import prisma from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
-import JobStatusBadge from "../../components/JobStatusBadge";
 import JobActions from "../JobActions";
-import Link from "@/app/components/Link";
+import { JobStatusBadge, Link } from "@/app/components";
 
 const JobsPage = async () => {
   const jobs = await prisma.job.findMany();
