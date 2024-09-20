@@ -44,4 +44,6 @@ const JobsPage = async () => {
   );
 };
 
+export const dynamic = "force-dynamic";
+
 export default JobsPage;

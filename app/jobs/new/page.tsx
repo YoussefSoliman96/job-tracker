@@ -30,6 +30,7 @@ const NewJobPage = () => {
       setSubmitting(true);
       await axios.post("/api/jobs", data);
       router.push("/jobs");
+      router.refresh();
     } catch (error) {
       setSubmitting(false);
       setError("An unexpected error occurred");
