@@ -1,9 +1,9 @@
 "use client";
 
-import { Button, TextArea, TextField } from "@radix-ui/themes";
+import { Button, Callout, TextArea, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 interface JobForm {
@@ -14,18 +14,30 @@ interface JobForm {
 const NewJobPage = () => {
   const router = useRouter();
   const { register, handleSubmit } = useForm<JobForm>();
+  const [error, setError] = useState("");
   return (
-    <form
-      className="max-w-xl space-y-3"
-      onSubmit={handleSubmit(async (data) => {
-        await axios.post("/api/jobs", data);
-        router.push("/jobs");
-      })}
-    >
-      <TextField.Root placeholder="Title" {...register("title")} />
-      <TextArea placeholder="Description" {...register("description")} />
-      <Button>Submit New Job</Button>
-    </form>
+    <div className="max-w-xl">
+      {error && (
+        <Callout.Root color="red" className="mb-5">
+          <Callout.Text>{error}</Callout.Text>
+        </Callout.Root>
+      )}
+      <form
+        className="space-y-3"
+        onSubmit={handleSubmit(async (data) => {
+          try {
+            await axios.post("/api/jobs", data);
+            router.push("/jobs");
+          } catch (error) {
+            setError("An unexpected error occurred");
+          }
+        })}
+      >
+        <TextField.Root placeholder="Title" {...register("title")} />
+        <TextArea placeholder="Description" {...register("description")} />
+        <Button>Submit New Job</Button>
+      </form>
+    </div>
   );
 };
 
