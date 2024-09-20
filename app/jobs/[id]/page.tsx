@@ -1,4 +1,6 @@
+import JobStatusBadge from "@/app/components/JobStatusBadge";
 import prisma from "@/prisma/client";
+import { Card, Flex, Heading, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -7,8 +9,6 @@ interface Props {
 }
 
 const JobDetailPage = async ({ params }: Props) => {
-  if (typeof params.id !== "number") notFound();
-
   const job = await prisma.job.findUnique({
     where: { id: parseInt(params.id) },
   });
@@ -17,10 +17,14 @@ const JobDetailPage = async ({ params }: Props) => {
 
   return (
     <div>
-      <p>{job.title}</p>
-      <p>{job.description}</p>
-      <p>{job.status}</p>
-      <p>{job.createdAt.toDateString()}</p>
+      <Heading>{job.title}</Heading>
+      <Flex gap="3" my="2">
+        <JobStatusBadge status={job.status} />
+        <Text>{job.createdAt.toDateString()}</Text>
+      </Flex>
+      <Card>
+        <p>{job.description}</p>
+      </Card>
     </div>
   );
 };
