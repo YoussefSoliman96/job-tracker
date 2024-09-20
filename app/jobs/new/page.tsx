@@ -1,19 +1,25 @@
 "use client";
 
-import { Button, Callout, TextArea, TextField } from "@radix-ui/themes";
+import { createJobSchema } from "@/app/validationSchemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, Callout, Text, TextArea, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-interface JobForm {
-  title: string;
-  description: string;
-}
+type JobForm = z.infer<typeof createJobSchema>;
 
 const NewJobPage = () => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm<JobForm>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<JobForm>({
+    resolver: zodResolver(createJobSchema),
+  });
   const [error, setError] = useState("");
   return (
     <div className="max-w-xl">
@@ -34,7 +40,17 @@ const NewJobPage = () => {
         })}
       >
         <TextField.Root placeholder="Title" {...register("title")} />
+        {errors.title && (
+          <Text color="red" as="p">
+            {errors.title.message}
+          </Text>
+        )}
         <TextArea placeholder="Description" {...register("description")} />
+        {errors.description && (
+          <Text color="red" as="p">
+            {errors.description.message}
+          </Text>
+        )}
         <Button>Submit New Job</Button>
       </form>
     </div>
