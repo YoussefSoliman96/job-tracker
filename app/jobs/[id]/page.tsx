@@ -1,8 +1,6 @@
-import JobStatusBadge from "@/app/components/JobStatusBadge";
 import prisma from "@/prisma/client";
-import { Card, Flex, Heading, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
-import React from "react";
+import JobDetails from "./JobDetails";
 
 interface Props {
   params: { id: string };
@@ -15,18 +13,7 @@ const JobDetailPage = async ({ params }: Props) => {
 
   if (!job) notFound();
 
-  return (
-    <div>
-      <Heading>{job.title}</Heading>
-      <Flex gap="3" my="2" className="items-center">
-        <JobStatusBadge status={job.status} />
-        <Text>{job.createdAt.toDateString()}</Text>
-      </Flex>
-      <Card mt="4" className="max-w-md">
-        <p>{job.description}</p>
-      </Card>
-    </div>
-  );
+  return <JobDetails job={job} />;
 };
 
 export default JobDetailPage;
