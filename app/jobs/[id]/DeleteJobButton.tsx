@@ -14,6 +14,7 @@ const DeleteJobButton = ({ jobId }: { jobId: number }) => {
       router.push("/jobs");
       router.refresh();
     } catch (error) {
+      setDeleting(false);
       setError(true);
     }
   };
@@ -29,7 +30,7 @@ const DeleteJobButton = ({ jobId }: { jobId: number }) => {
         <AlertDialog.Content>
           <AlertDialog.Title>Confirm Deletion</AlertDialog.Title>
           <AlertDialog.Description>
-            Are you sure you want to delete this provider? This action cannot be
+            Are you sure you want to delete this job? This action cannot be
             undone.
           </AlertDialog.Description>
           <Flex mt="4" gap="3">
@@ -40,7 +41,7 @@ const DeleteJobButton = ({ jobId }: { jobId: number }) => {
             </AlertDialog.Cancel>
             <AlertDialog.Action>
               <Button color="red" onClick={deleteJob}>
-                Delete Provider
+                Delete Job
               </Button>
             </AlertDialog.Action>
           </Flex>
@@ -50,7 +51,7 @@ const DeleteJobButton = ({ jobId }: { jobId: number }) => {
         <AlertDialog.Content>
           <AlertDialog.Title>Error</AlertDialog.Title>
           <AlertDialog.Description>
-            Provider could not be deleted
+            Job could not be deleted
           </AlertDialog.Description>
           <Button
             color="gray"
