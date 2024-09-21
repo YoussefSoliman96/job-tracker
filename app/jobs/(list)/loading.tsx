@@ -1,6 +1,6 @@
 import { Table } from "@radix-ui/themes";
 import Skeleton from "../../components/Skeleton";
-import JobActions from "../JobActions";
+import JobActions from "./JobActions";
 
 const LoadingJobsPage = () => {
   const jobs = [1, 2, 3, 4, 5, 6, 7];

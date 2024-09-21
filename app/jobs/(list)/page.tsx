@@ -1,6 +1,6 @@
 import prisma from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
-import JobActions from "../JobActions";
+import JobActions from "./JobActions";
 import { JobStatusBadge, Link } from "@/app/components";
 
 const JobsPage = async () => {

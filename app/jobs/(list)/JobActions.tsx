@@ -1,13 +1,15 @@
-import { Button } from "@radix-ui/themes";
+import { Button, Flex } from "@radix-ui/themes";
 import Link from "next/link";
+import JobStatusFilter from "./JobStatusFilter";
 
 const JobActions = () => {
   return (
-    <div className="mb-5">
+    <Flex mb="5" justify="between">
+      <JobStatusFilter />
       <Button>
         <Link href="/jobs/new">Add Job</Link>
       </Button>
-    </div>
+    </Flex>
   );
 };
 
