@@ -1,5 +1,6 @@
 "use client";
 import { AlertDialog, Button, Flex, Spinner } from "@radix-ui/themes";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -7,7 +8,10 @@ const DeleteJobButton = ({ jobId }: { jobId: number }) => {
   const router = useRouter();
   const [error, setError] = useState(false);
   const [isDeleting, setDeleting] = useState(false);
-  const deleteProvider = async () => {};
+  const deleteProvider = async () => {
+    axios.delete("/api/jobs/" + jobId);
+    router.push("/jobs");
+  };
   return (
     <>
       <AlertDialog.Root>
