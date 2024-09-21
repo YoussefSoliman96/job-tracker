@@ -9,8 +9,14 @@ const DeleteJobButton = ({ jobId }: { jobId: number }) => {
   const [error, setError] = useState(false);
   const [isDeleting, setDeleting] = useState(false);
   const deleteProvider = async () => {
-    axios.delete("/api/jobs/" + jobId);
-    router.push("/jobs");
+    try {
+      throw new Error();
+      await axios.delete("/api/jobs/" + jobId);
+      router.push("/jobs");
+      router.refresh();
+    } catch (error) {
+      setError(true);
+    }
   };
   return (
     <>
