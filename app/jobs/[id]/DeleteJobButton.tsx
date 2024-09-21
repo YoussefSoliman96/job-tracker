@@ -8,9 +8,8 @@ const DeleteJobButton = ({ jobId }: { jobId: number }) => {
   const router = useRouter();
   const [error, setError] = useState(false);
   const [isDeleting, setDeleting] = useState(false);
-  const deleteProvider = async () => {
+  const deleteJob = async () => {
     try {
-      throw new Error();
       await axios.delete("/api/jobs/" + jobId);
       router.push("/jobs");
       router.refresh();
@@ -40,7 +39,7 @@ const DeleteJobButton = ({ jobId }: { jobId: number }) => {
               </Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action>
-              <Button color="red" onClick={deleteProvider}>
+              <Button color="red" onClick={deleteJob}>
                 Delete Provider
               </Button>
             </AlertDialog.Action>
