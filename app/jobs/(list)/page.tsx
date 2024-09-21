@@ -5,6 +5,7 @@ import { JobStatusBadge, Link } from "@/app/components";
 import { Job, Status } from "@prisma/client";
 import NextLink from "next/link";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
+import { useSearchParams } from "next/navigation";
 
 const JobsPage = async ({
   searchParams,
@@ -20,10 +21,17 @@ const JobsPage = async ({
   const status = statuses.includes(searchParams.status)
     ? searchParams.status
     : undefined;
+
+  const orderBy = columns
+    .map((column) => column.value)
+    .includes(searchParams.orderBy)
+    ? { [searchParams.orderBy]: "asc" }
+    : undefined;
   const jobs = await prisma.job.findMany({
     where: {
       status,
     },
+    orderBy,
   });
 
   return (
