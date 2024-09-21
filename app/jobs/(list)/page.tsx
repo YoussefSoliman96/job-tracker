@@ -2,9 +2,22 @@ import prisma from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
 import JobActions from "./JobActions";
 import { JobStatusBadge, Link } from "@/app/components";
+import { Status } from "@prisma/client";
 
-const JobsPage = async () => {
-  const jobs = await prisma.job.findMany();
+const JobsPage = async ({
+  searchParams,
+}: {
+  searchParams: { status: Status };
+}) => {
+  const statuses = Object.values(Status);
+  const status = statuses.includes(searchParams.status)
+    ? searchParams.status
+    : undefined;
+  const jobs = await prisma.job.findMany({
+    where: {
+      status,
+    },
+  });
 
   return (
     <div>
