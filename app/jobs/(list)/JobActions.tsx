@@ -4,7 +4,7 @@ import JobStatusFilter from "./JobStatusFilter";
 
 const JobActions = () => {
   return (
-    <Flex mb="5" justify="between">
+    <Flex justify="between">
       <JobStatusFilter />
       <Button>
         <Link href="/jobs/new">Add Job</Link>
