@@ -17,6 +17,7 @@ const DeleteJobButton = ({ jobId, size, jobStatus }: Props) => {
   const [isDeleting, setDeleting] = useState(false);
   const deleteJob = async () => {
     try {
+      setDeleting(true);
       await axios.delete("/api/jobs/" + jobId);
       router.push("/jobs");
       router.refresh();

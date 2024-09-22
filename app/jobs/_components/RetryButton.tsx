@@ -1,28 +1,60 @@
 "use client";
 
 import { Job } from "@prisma/client";
-import { Button } from "@radix-ui/themes";
+import { AlertDialog, Box, Button } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 
-const RetryButton = ({ jobId }: { jobId: number }) => {
+interface Props {
+  job: Job;
+  size: "1" | "2" | "3" | "4";
+}
+
+const RetryButton = ({ job, size }: Props) => {
   const router = useRouter();
   const [error, setError] = useState(false);
+  const [isRetrying, setRetrying] = useState(false);
+
   const retryJob = async () => {
     try {
-      await axios.patch("/api/jobs/" + jobId, {
+      setRetrying(true);
+      await axios.patch("/api/jobs/" + job.id, {
         status: "QUEUED",
       });
       router.refresh();
     } catch (error) {
+      setRetrying(false);
       setError(true);
     }
   };
   return (
-    <Button color="green" onClick={retryJob}>
-      Retry
-    </Button>
+    <Box>
+      <Button
+        color="green"
+        onClick={retryJob}
+        size={size}
+        disabled={job.status !== "FAILED"}
+      >
+        Retry
+      </Button>
+      <AlertDialog.Root open={error}>
+        <AlertDialog.Content>
+          <AlertDialog.Title>Error</AlertDialog.Title>
+          <AlertDialog.Description>
+            Job could not be requeued
+          </AlertDialog.Description>
+          <Button
+            color="gray"
+            variant="soft"
+            mt="2"
+            onClick={() => setError(false)}
+          >
+            Ok
+          </Button>
+        </AlertDialog.Content>
+      </AlertDialog.Root>
+    </Box>
   );
 };
 

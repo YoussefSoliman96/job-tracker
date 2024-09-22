@@ -8,6 +8,7 @@ import { Job, Status } from "@prisma/client";
 import StatusSelect from "../[id]/StatusSelect";
 import ModalButton from "../_components/ModalButton";
 import DeleteJobButton from "../[id]/DeleteJobButton";
+import RetryButton from "../_components/RetryButton";
 
 export interface JobQuery {
   status: Status;
@@ -61,7 +62,7 @@ const JobTable = ({ searchParams, jobs }: Props) => {
               {job.createdAt.toDateString()}
             </Table.Cell>
             <Table.Cell>
-              <Flex gap="4" className="items-center">
+              <Flex justify="between" className="items-center">
                 <ModalButton job={job} />
 
                 <DeleteJobButton
@@ -69,6 +70,8 @@ const JobTable = ({ searchParams, jobs }: Props) => {
                   size="1"
                   jobStatus={job.status}
                 />
+
+                <RetryButton job={job} size="1" />
               </Flex>
             </Table.Cell>
             {/* <Table.Cell className="hidden md:table-cell">
