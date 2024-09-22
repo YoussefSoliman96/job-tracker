@@ -3,6 +3,7 @@ import JobSummary from "./JobSummary";
 import JobChart from "./JobChart";
 import { Flex, Grid } from "@radix-ui/themes";
 import LatestJobs from "./LatestJobs";
+import { Metadata } from "next";
 
 export default async function Home() {
   const queued = await prisma.job.count({ where: { status: "QUEUED" } });
@@ -29,3 +30,8 @@ export default async function Home() {
     </Grid>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Job Tracker - Dashboard",
+  description: "View a summary of jobs",
+};

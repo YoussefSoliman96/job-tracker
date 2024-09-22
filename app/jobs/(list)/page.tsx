@@ -4,6 +4,7 @@ import { Status } from "@prisma/client";
 import JobActions from "./JobActions";
 import JobTable, { columnNames, JobQuery } from "./JobTable";
 import { Flex } from "@radix-ui/themes";
+import { Metadata } from "next";
 
 interface Props {
   searchParams: JobQuery;
@@ -42,5 +43,10 @@ const JobsPage = async ({ searchParams }: Props) => {
 };
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Job Tracker - Job list",
+  description: "View all jobs",
+};
 
 export default JobsPage;
