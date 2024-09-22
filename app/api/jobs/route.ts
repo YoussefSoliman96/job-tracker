@@ -1,10 +1,10 @@
-import { createJobSchema } from "@/app/validationSchemas";
+import { jobSchema } from "@/app/validationSchemas";
 import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const validation = createJobSchema.safeParse(body);
+  const validation = jobSchema.safeParse(body);
   if (!validation.success)
     return NextResponse.json(
       { error: validation.error.errors },
