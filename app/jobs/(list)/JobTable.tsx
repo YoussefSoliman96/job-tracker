@@ -1,4 +1,4 @@
-import { Table } from "@radix-ui/themes";
+import { Flex, Table } from "@radix-ui/themes";
 import React from "react";
 import NextLink from "next/link";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
@@ -7,6 +7,7 @@ import { JobStatusBadge, Link } from "@/app/components";
 import { Job, Status } from "@prisma/client";
 import StatusSelect from "../[id]/StatusSelect";
 import ModalButton from "../_components/ModalButton";
+import DeleteJobButton from "../[id]/DeleteJobButton";
 
 export interface JobQuery {
   status: Status;
@@ -60,7 +61,15 @@ const JobTable = ({ searchParams, jobs }: Props) => {
               {job.createdAt.toDateString()}
             </Table.Cell>
             <Table.Cell>
-              <ModalButton job={job} />
+              <Flex gap="4" className="items-center">
+                <ModalButton job={job} />
+
+                <DeleteJobButton
+                  jobId={job.id}
+                  size="1"
+                  jobStatus={job.status}
+                />
+              </Flex>
             </Table.Cell>
             {/* <Table.Cell className="hidden md:table-cell">
               <StatusSelect job={job} />

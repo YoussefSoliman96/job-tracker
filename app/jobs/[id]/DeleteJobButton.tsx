@@ -1,10 +1,17 @@
 "use client";
+import { Status } from "@prisma/client";
 import { AlertDialog, Button, Flex, Spinner } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const DeleteJobButton = ({ jobId }: { jobId: number }) => {
+interface Props {
+  jobId: number;
+  size: "1" | "2" | "3" | "4";
+  jobStatus: Status;
+}
+
+const DeleteJobButton = ({ jobId, size, jobStatus }: Props) => {
   const router = useRouter();
   const [error, setError] = useState(false);
   const [isDeleting, setDeleting] = useState(false);
@@ -22,7 +29,13 @@ const DeleteJobButton = ({ jobId }: { jobId: number }) => {
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
-          <Button color="red" disabled={isDeleting}>
+          <Button
+            color="red"
+            disabled={
+              isDeleting || jobStatus === "RUNNING" || jobStatus === "SUCCESS"
+            }
+            size={size}
+          >
             Delete
             {isDeleting && <Spinner />}
           </Button>
