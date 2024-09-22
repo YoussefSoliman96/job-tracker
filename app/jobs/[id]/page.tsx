@@ -5,6 +5,7 @@ import { Box, Flex, Grid } from "@radix-ui/themes";
 import DeleteJobButton from "./DeleteJobButton";
 import { Metadata } from "next";
 import { cache } from "react";
+import StatusSelect from "./StatusSelect";
 
 interface Props {
   params: { id: string };
@@ -27,7 +28,8 @@ const JobDetailPage = async ({ params }: Props) => {
       </Box>
       <Box>
         <Flex direction="column" gap="4">
-          <DeleteJobButton jobId={job.id} />
+          <StatusSelect job={job} />
+          <DeleteJobButton jobId={job.id} jobStatus={job.status} size="2" />
         </Flex>
       </Box>
     </Grid>
