@@ -6,11 +6,12 @@ import { Job, Status } from "@prisma/client";
 import NextLink from "next/link";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 import { useSearchParams } from "next/navigation";
+import Pagination from "@/app/components/Pagination";
 
 const JobsPage = async ({
   searchParams,
 }: {
-  searchParams: { status: Status; orderBy: keyof Job };
+  searchParams: { status: Status; orderBy: keyof Job; page: string };
 }) => {
   const columns: { label: string; value: keyof Job; className?: string }[] = [
     { label: "Job", value: "title" },
@@ -22,17 +23,24 @@ const JobsPage = async ({
     ? searchParams.status
     : undefined;
 
+  const where = { status };
+
   const orderBy = columns
     .map((column) => column.value)
     .includes(searchParams.orderBy)
     ? { [searchParams.orderBy]: "asc" }
     : undefined;
+
+  const page = parseInt(searchParams.page) || 1;
+  const pageSize = 10;
   const jobs = await prisma.job.findMany({
-    where: {
-      status,
-    },
+    where,
     orderBy,
+    skip: (page - 1) * pageSize,
+    take: pageSize,
   });
+
+  const jobCount = await prisma.job.count({ where });
 
   return (
     <div>
@@ -78,6 +86,7 @@ const JobsPage = async ({
           ))}
         </Table.Body>
       </Table.Root>
+      <Pagination pageSize={pageSize} currentPage={page} itemCount={jobCount} />
     </div>
   );
 };
