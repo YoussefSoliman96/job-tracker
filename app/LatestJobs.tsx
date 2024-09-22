@@ -1,8 +1,11 @@
 import prisma from "@/prisma/client";
-import { Card, Flex, Heading, Table } from "@radix-ui/themes";
+import { Box, Card, Flex, Heading, Table } from "@radix-ui/themes";
 import React from "react";
 import { JobStatusBadge } from "./components";
 import Link from "next/link";
+import ModalButton from "./jobs/_components/ModalButton";
+import DeleteJobButton from "./jobs/[id]/DeleteJobButton";
+import RetryButton from "./jobs/_components/RetryButton";
 
 const LatestJobs = async () => {
   const jobs = await prisma.job.findMany({
@@ -19,9 +22,22 @@ const LatestJobs = async () => {
           {jobs.map((job) => (
             <Table.Row key={job.id}>
               <Table.Cell>
-                <Flex direction="column" align="start" gap="2">
-                  <Link href={`/jobs/${job.id}`}>{job.title}</Link>
-                  <JobStatusBadge status={job.status} />
+                <Flex justify="between">
+                  <Flex direction="column" align="start" gap="2">
+                    <Link href={`/jobs/${job.id}`}>{job.title}</Link>
+                    <JobStatusBadge status={job.status} />
+                  </Flex>
+                  <Flex gap="3" className="items-center">
+                    <ModalButton job={job} />
+
+                    <DeleteJobButton
+                      jobId={job.id}
+                      size="1"
+                      jobStatus={job.status}
+                    />
+
+                    <RetryButton job={job} size="1" />
+                  </Flex>
                 </Flex>
               </Table.Cell>
             </Table.Row>

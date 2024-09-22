@@ -74,9 +74,6 @@ const JobTable = ({ searchParams, jobs }: Props) => {
                 <RetryButton job={job} size="1" />
               </Flex>
             </Table.Cell>
-            {/* <Table.Cell className="hidden md:table-cell">
-              <StatusSelect job={job} />
-            </Table.Cell> */}
           </Table.Row>
         ))}
       </Table.Body>
