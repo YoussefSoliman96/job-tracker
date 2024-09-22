@@ -1,7 +1,6 @@
 import prisma from "@/prisma/client";
-import Pagination from "./components/Pagination";
 import JobSummary from "./JobSummary";
-import LatestJobs from "./LatestJobs";
+import JobChart from "./JobChart";
 
 export default async function Home() {
   const queued = await prisma.job.count({ where: { status: "QUEUED" } });
@@ -9,7 +8,7 @@ export default async function Home() {
   const success = await prisma.job.count({ where: { status: "SUCCESS" } });
   const failed = await prisma.job.count({ where: { status: "FAILED" } });
   return (
-    <JobSummary
+    <JobChart
       queued={queued}
       running={running}
       success={success}
