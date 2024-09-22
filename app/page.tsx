@@ -1,6 +1,8 @@
 import prisma from "@/prisma/client";
 import JobSummary from "./JobSummary";
 import JobChart from "./JobChart";
+import { Flex, Grid } from "@radix-ui/themes";
+import LatestJobs from "./LatestJobs";
 
 export default async function Home() {
   const queued = await prisma.job.count({ where: { status: "QUEUED" } });
@@ -8,11 +10,22 @@ export default async function Home() {
   const success = await prisma.job.count({ where: { status: "SUCCESS" } });
   const failed = await prisma.job.count({ where: { status: "FAILED" } });
   return (
-    <JobChart
-      queued={queued}
-      running={running}
-      success={success}
-      failed={failed}
-    />
+    <Grid columns={{ initial: "1", md: "2" }} gap="5">
+      <Flex direction="column" gap="5">
+        <JobSummary
+          queued={queued}
+          running={running}
+          success={success}
+          failed={failed}
+        />
+        <JobChart
+          queued={queued}
+          running={running}
+          success={success}
+          failed={failed}
+        />
+      </Flex>
+      <LatestJobs />
+    </Grid>
   );
 }
