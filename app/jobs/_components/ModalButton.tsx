@@ -9,6 +9,7 @@ import prisma from "@/prisma/client";
 import { Job, Status } from "@prisma/client";
 import { get } from "http";
 import RetryButton from "./RetryButton";
+import StatusSelect from "../[id]/StatusSelect";
 
 const ModalButton = ({ job }: { job: Job }) => {
   const router = useRouter();
@@ -34,7 +35,12 @@ const ModalButton = ({ job }: { job: Job }) => {
           </Button>
         </AlertDialog.Trigger>
         <AlertDialog.Content>
-          <AlertDialog.Title>{job.title}</AlertDialog.Title>
+          <AlertDialog.Title>
+            <Flex gap="3">
+              <Box>{job.title}</Box>
+              <StatusSelect job={job} />
+            </Flex>
+          </AlertDialog.Title>
           <AlertDialog.Description>{job.description}</AlertDialog.Description>
           <Flex mt="4" gap="3" justify="between">
             <AlertDialog.Cancel>
