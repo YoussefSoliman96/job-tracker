@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import prisma from "@/prisma/client";
 import { Job, Status } from "@prisma/client";
 import { get } from "http";
+import RetryButton from "./RetryButton";
 
 const ModalButton = ({ job }: { job: Job }) => {
   const router = useRouter();
@@ -19,16 +20,6 @@ const ModalButton = ({ job }: { job: Job }) => {
       router.refresh();
     } catch (error) {
       setDeleting(false);
-      setError(true);
-    }
-  };
-  const retryJob = async () => {
-    try {
-      await axios.patch("/api/jobs/" + job.id, {
-        status: "QUEUED",
-      });
-      router.refresh();
-    } catch (error) {
       setError(true);
     }
   };
@@ -61,9 +52,7 @@ const ModalButton = ({ job }: { job: Job }) => {
                   </AlertDialog.Action>
                 </Box>
                 <Box>
-                  <Button color="green" onClick={retryJob}>
-                    Retry
-                  </Button>
+                  <RetryButton jobId={job.id} />
                 </Box>
               </Flex>
             )}
