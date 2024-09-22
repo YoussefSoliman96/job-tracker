@@ -42,7 +42,7 @@ const ModalButton = ({ job }: { job: Job }) => {
                 Cancel
               </Button>
             </AlertDialog.Cancel>
-            {job.status === "FAILED" && (
+            {(job.status === "FAILED" || job.status === "QUEUED") && (
               <Flex gap="2">
                 <Box>
                   <AlertDialog.Action>
@@ -52,7 +52,9 @@ const ModalButton = ({ job }: { job: Job }) => {
                   </AlertDialog.Action>
                 </Box>
                 <Box>
-                  <RetryButton jobId={job.id} />
+                  {job.status === "FAILED" && (
+                    <RetryButton job={job} size="2" />
+                  )}
                 </Box>
               </Flex>
             )}
