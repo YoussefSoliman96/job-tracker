@@ -6,6 +6,7 @@ import { JobStatusBadge, Link } from "@/app/components";
 
 import { Job, Status } from "@prisma/client";
 import StatusSelect from "../[id]/StatusSelect";
+import ModalButton from "../_components/ModalButton";
 
 export interface JobQuery {
   status: Status;
@@ -40,7 +41,7 @@ const JobTable = ({ searchParams, jobs }: Props) => {
               </NextLink>
             </Table.ColumnHeaderCell>
           ))}
-          {/* <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell> */}
+          <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -57,6 +58,9 @@ const JobTable = ({ searchParams, jobs }: Props) => {
             </Table.Cell>
             <Table.Cell className="hidden md:table-cell">
               {job.createdAt.toDateString()}
+            </Table.Cell>
+            <Table.Cell>
+              <ModalButton job={job} />
             </Table.Cell>
             {/* <Table.Cell className="hidden md:table-cell">
               <StatusSelect job={job} />

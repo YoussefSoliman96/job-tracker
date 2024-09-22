@@ -1,4 +1,4 @@
-import { jobSchema } from "@/app/validationSchemas";
+import { jobSchema, retryJobSchema } from "@/app/validationSchemas";
 import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -7,7 +7,7 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   const body = await request.json();
-  const validation = jobSchema.safeParse(body);
+  const validation = retryJobSchema.safeParse(body);
   if (!validation.success)
     return NextResponse.json(
       { error: validation.error.errors },
@@ -27,8 +27,7 @@ export async function PATCH(
       id: job.id,
     },
     data: {
-      title: body.title,
-      description: body.description,
+      status: body.status,
     },
   });
 
