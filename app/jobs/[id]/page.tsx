@@ -4,15 +4,19 @@ import JobDetails from "./JobDetails";
 import { Box, Flex, Grid } from "@radix-ui/themes";
 import DeleteJobButton from "./DeleteJobButton";
 import { Metadata } from "next";
+import { cache } from "react";
 
 interface Props {
   params: { id: string };
 }
+const fetchUser = cache((jobId: number) =>
+  prisma.job.findUnique({
+    where: { id: jobId },
+  })
+);
 
 const JobDetailPage = async ({ params }: Props) => {
-  const job = await prisma.job.findUnique({
-    where: { id: parseInt(params.id) },
-  });
+  const job = await fetchUser(parseInt(params.id));
 
   if (!job) notFound();
 
@@ -31,9 +35,8 @@ const JobDetailPage = async ({ params }: Props) => {
 };
 
 export async function generateMetadata({ params }: Props) {
-  const job = await prisma.job.findUnique({
-    where: { id: parseInt(params.id) },
-  });
+  const job = await fetchUser(parseInt(params.id));
+
   return {
     title: job?.title,
     description: "Details of job" + job?.id,
