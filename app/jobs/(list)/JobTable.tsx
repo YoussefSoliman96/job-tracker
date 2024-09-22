@@ -2,9 +2,10 @@ import { Table } from "@radix-ui/themes";
 import React from "react";
 import NextLink from "next/link";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
-import { JobStatusBadge } from "@/app/components";
-import Link from "next/link";
+import { JobStatusBadge, Link } from "@/app/components";
+
 import { Job, Status } from "@prisma/client";
+import StatusSelect from "../[id]/StatusSelect";
 
 export interface JobQuery {
   status: Status;
@@ -39,6 +40,7 @@ const JobTable = ({ searchParams, jobs }: Props) => {
               </NextLink>
             </Table.ColumnHeaderCell>
           ))}
+          {/* <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell> */}
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -56,6 +58,9 @@ const JobTable = ({ searchParams, jobs }: Props) => {
             <Table.Cell className="hidden md:table-cell">
               {job.createdAt.toDateString()}
             </Table.Cell>
+            {/* <Table.Cell className="hidden md:table-cell">
+              <StatusSelect job={job} />
+            </Table.Cell> */}
           </Table.Row>
         ))}
       </Table.Body>
