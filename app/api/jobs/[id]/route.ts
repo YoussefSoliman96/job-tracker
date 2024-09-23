@@ -42,6 +42,10 @@ export async function DELETE(
     where: { id: parseInt(params.id) },
   });
   if (!job) return NextResponse.json({ error: "Invalid job" }, { status: 404 });
+  if (job.status === "RUNNING")
+    return NextResponse.json({ error: "Cannot delete a running job" });
+  if (job.status === "SUCCESS")
+    return NextResponse.json({ error: "Cannot delete a finished job" });
 
   await prisma.job.delete({ where: { id: job.id } });
 
