@@ -1,8 +1,8 @@
 "use client";
 import { Status } from "@prisma/client";
-import { AlertDialog, Button, Flex, Spinner } from "@radix-ui/themes";
+import { AlertDialog, Box, Button, Flex, Spinner } from "@radix-ui/themes";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const DeleteJobButton = ({ jobId, size, jobStatus }: Props) => {
+  const currentPath = usePathname();
   const router = useRouter();
   const [error, setError] = useState(false);
   const [isDeleting, setDeleting] = useState(false);
@@ -19,7 +20,7 @@ const DeleteJobButton = ({ jobId, size, jobStatus }: Props) => {
     try {
       setDeleting(true);
       await axios.delete("/api/jobs/" + jobId);
-      router.push("/jobs");
+      router.push(currentPath);
       router.refresh();
     } catch (error) {
       setDeleting(false);

@@ -6,6 +6,7 @@ import DeleteJobButton from "./DeleteJobButton";
 import { Metadata } from "next";
 import { cache } from "react";
 import StatusSelect from "./StatusSelect";
+import RetryButton from "../_components/RetryButton";
 
 interface Props {
   params: { id: string };
@@ -30,6 +31,7 @@ const JobDetailPage = async ({ params }: Props) => {
         <Flex direction="column" gap="4">
           <StatusSelect job={job} />
           <DeleteJobButton jobId={job.id} jobStatus={job.status} size="2" />
+          <RetryButton job={job} size="2" />
         </Flex>
       </Box>
     </Grid>

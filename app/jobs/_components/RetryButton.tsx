@@ -1,9 +1,10 @@
 "use client";
 
+import { Spinner } from "@/app/components";
 import { Job } from "@prisma/client";
 import { AlertDialog, Box, Button } from "@radix-ui/themes";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface Props {
@@ -12,16 +13,19 @@ interface Props {
 }
 
 const RetryButton = ({ job, size }: Props) => {
+  const currentPath = usePathname();
   const router = useRouter();
   const [error, setError] = useState(false);
   const [isRetrying, setRetrying] = useState(false);
 
+  console.log(currentPath);
   const retryJob = async () => {
     try {
       setRetrying(true);
       await axios.patch("/api/jobs/" + job.id, {
         status: "QUEUED",
       });
+      router.push(currentPath);
       router.refresh();
     } catch (error) {
       setRetrying(false);
@@ -29,7 +33,7 @@ const RetryButton = ({ job, size }: Props) => {
     }
   };
   return (
-    <Box>
+    <>
       <Button
         color="green"
         onClick={retryJob}
@@ -54,7 +58,7 @@ const RetryButton = ({ job, size }: Props) => {
           </Button>
         </AlertDialog.Content>
       </AlertDialog.Root>
-    </Box>
+    </>
   );
 };
 
