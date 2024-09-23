@@ -202,11 +202,10 @@ Retry/Delete Functionality:
   ```
 
 - **Response**:
-
-  - **201 Created** -- Returns the created job object.
+   **201 Created** -- Returns the created job object.
   - **Example**:
-
-        `{
+ ```json
+  {
 
     "id": 1,
     "title": "Data Processing",
@@ -214,14 +213,16 @@ Retry/Delete Functionality:
     "status": "QUEUED",
     "createdAt": "2024-09-20T10:00:00Z",
     "updatedAt": "2024-09-20T10:00:00Z"
-    }`
+ {
+  ```
+    
 
 - **Error Responses**:
 
   - **400 Bad Request** -- If validation fails.
   - **Example**:
-
-        `{
+```json
+        {
 
     "error": [
     {
@@ -229,8 +230,8 @@ Retry/Delete Functionality:
     "message": "Title is required"
     }
     ]
-    }`
-
+    }
+```
 ---
 
 ### **2\. Retry Job**
@@ -257,8 +258,9 @@ Retry/Delete Functionality:
 
   - **200 OK** -- Returns the updated job object.
   - **Example**:
+```json
 
-        `{
+{
 
     "id": 1,
     "title": "Data Processing",
@@ -266,18 +268,21 @@ Retry/Delete Functionality:
     "status": "RUNNING",
     "createdAt": "2024-09-20T10:00:00Z",
     "updatedAt": "2024-09-21T12:00:00Z"
-    }`
+    }
+```
 
 - **Error Responses**:
 
   - **400 Bad Request** -- If the input validation fails.
   - **404 Not Found** -- If the job with the provided ID does not exist.
   - **Example**:
+```json
 
-        `{
+        {
 
     "error": "Invalid job"
-    }`
+    }
+```
 
 ---
 
@@ -295,21 +300,25 @@ Retry/Delete Functionality:
 
   - **200 OK** -- Returns a success message or an empty object.
   - **Example**:
+```json
 
-        `{
+        {
 
     "message": "Job successfully deleted."
-    }`
+    }
+```
 
 - **Error Responses**:
 
   - **404 Not Found** -- If the job with the provided ID does not exist.
   - **Example**:
-
-        `{
+    
+```json
+        {
 
     "error": "Invalid job"
-    }`
+    }
+```
 
 ---
 
