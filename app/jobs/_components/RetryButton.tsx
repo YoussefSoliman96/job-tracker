@@ -4,7 +4,7 @@ import { Spinner } from "@/app/components";
 import { Job } from "@prisma/client";
 import { AlertDialog, Box, Button } from "@radix-ui/themes";
 import axios from "axios";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const RetryButton = ({ job, size }: Props) => {
-  const currentPath = usePathname();
+  const currentPath = usePathname() + "?" + useSearchParams();
   const router = useRouter();
   const [error, setError] = useState(false);
   const [isRetrying, setRetrying] = useState(false);
