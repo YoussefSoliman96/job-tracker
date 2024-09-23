@@ -62,105 +62,98 @@ different types of jobs.
 
 ## System Design:
 
-Admin Dashboard Setup (#dashboard)
-----------------------------------
+## Admin Dashboard Setup (#dashboard)
 
--   [ ] Design the dashboard layout
-    -   [ ] Create wireframes
-    -   [ ] Get feedback from stakeholders
--   [ ] Implement color-coding for Job statuses
-    -   [ ] Define color codes for QUEUED, RUNNING, SUCCESS, FAILED
--   [ ] Develop UI components
-    -   [ ] Job listing table
-    -   [ ] Job details modal
--   [ ] Integrate with JMS API
-    -   [ ] Fetch last 10 Jobs
-    -   [ ] Display Job statuses
+- [ ] Design the dashboard layout
+  - [ ] Create wireframes
+  - [ ] Get feedback from stakeholders
+- [ ] Implement color-coding for Job statuses
+  - [ ] Define color codes for QUEUED, RUNNING, SUCCESS, FAILED
+- [ ] Develop UI components
+  - [ ] Job listing table
+  - [ ] Job details modal
+- [ ] Integrate with JMS API
+  - [ ] Fetch last 10 Jobs
+  - [ ] Display Job statuses
 
-Job Listing Actions (#job-listing)
-----------------------------------
+## Job Listing Actions (#job-listing)
 
--   [ ] Display last 10 Jobs with statuses
-    -   [ ] Fetch Jobs from JMS API
-    -   [ ] Render Jobs in the listing table
--   [ ] Implement click functionality to show Job details
-    -   [ ] Create modal window
-    -   [ ] Populate modal with Job details
--   [ ] Retry a FAILED Job
-    -   [ ] Add retry button for FAILED status
-    -   [ ] Implement retry functionality
--   [ ] Delete a Job with QUEUED or FAILED status
-    -   [ ] Add delete button for QUEUED and FAILED status
-    -   [ ] Implement delete functionality
+- [ ] Display last 10 Jobs with statuses
+  - [ ] Fetch Jobs from JMS API
+  - [ ] Render Jobs in the listing table
+- [ ] Implement click functionality to show Job details
+  - [ ] Create modal window
+  - [ ] Populate modal with Job details
+- [ ] Retry a FAILED Job
+  - [ ] Add retry button for FAILED status
+  - [ ] Implement retry functionality
+- [ ] Delete a Job with QUEUED or FAILED status
+  - [ ] Add delete button for QUEUED and FAILED status
+  - [ ] Implement delete functionality
 
-Job Details Modal Actions (#job-details)
-----------------------------------------
+## Job Details Modal Actions (#job-details)
 
--   [ ] Display Job details in modal
-    -   [ ] Fetch Job details from JMS API
-    -   [ ] Show Job status
--   [ ] Retry a FAILED Job from modal
-    -   [ ] Add retry button for FAILED status
-    -   [ ] Implement retry functionality
--   [ ] Delete a QUEUED or FAILED Job from modal
-    -   [ ] Add delete button for QUEUED and FAILED status
-    -   [ ] Implement delete functionality
+- [ ] Display Job details in modal
+  - [ ] Fetch Job details from JMS API
+  - [ ] Show Job status
+- [ ] Retry a FAILED Job from modal
+  - [ ] Add retry button for FAILED status
+  - [ ] Implement retry functionality
+- [ ] Delete a QUEUED or FAILED Job from modal
+  - [ ] Add delete button for QUEUED and FAILED status
+  - [ ] Implement delete functionality
 
-API Integration Tasks (#api-integration)
-----------------------------------------
+## API Integration Tasks (#api-integration)
 
--   [ ] Fetch last 10 Jobs
-    -   [ ] Create API endpoint for fetching Jobs
-    -   [ ] Parse response and display in the dashboard
--   [ ] Query Job status
-    -   [ ] Create API endpoint for querying Job status
-    -   [ ] Update status in the UI
--   [ ] Retry a FAILED Job
-    -   [ ] Create API endpoint for retrying Job
-    -   [ ] Handle API response and update UI
--   [ ] Delete a Job
-    -   [ ] Create API endpoint for deleting Job
-    -   [ ] Handle API response and update UI
+- [ ] Fetch last 10 Jobs
+  - [ ] Create API endpoint for fetching Jobs
+  - [ ] Parse response and display in the dashboard
+- [ ] Query Job status
+  - [ ] Create API endpoint for querying Job status
+  - [ ] Update status in the UI
+- [ ] Retry a FAILED Job
+  - [ ] Create API endpoint for retrying Job
+  - [ ] Handle API response and update UI
+- [ ] Delete a Job
+  - [ ] Create API endpoint for deleting Job
+  - [ ] Handle API response and update UI
 
-Testing and Validation (#testing)
----------------------------------
+## Testing and Validation (#testing)
 
--   [ ] Unit tests for UI components
-    -   [ ] Job listing table
-    -   [ ] Job details modal
--   [ ] Integration tests for API endpoints
-    -   [ ] Fetching Jobs
-    -   [ ] Querying Job status
-    -   [ ] Retrying a Job
-    -   [ ] Deleting a Job
--   [ ] User acceptance testing
-    -   [ ] Test dashboard with JMS Admin
-    -   [ ] Gather feedback and make necessary adjustments
+- [ ] Unit tests for UI components
+  - [ ] Job listing table
+  - [ ] Job details modal
+- [ ] Integration tests for API endpoints
+  - [ ] Fetching Jobs
+  - [ ] Querying Job status
+  - [ ] Retrying a Job
+  - [ ] Deleting a Job
+- [ ] User acceptance testing
+  - [ ] Test dashboard with JMS Admin
+  - [ ] Gather feedback and make necessary adjustments
 
-Deployment Plan (#deployment)
------------------------------
+## Deployment Plan (#deployment)
 
--   [ ] Prepare deployment environment
-    -   [ ] Set up staging server
-    -   [ ] Configure necessary services
--   [ ] Deploy dashboard to staging
-    -   [ ] Test in staging environment
-    -   [ ] Fix any issues found
--   [ ] Deploy to production
-    -   [ ] Monitor for issues post-deployment
-    -   [ ] Ensure all functionalities work as expected
+- [ ] Prepare deployment environment
+  - [ ] Set up staging server
+  - [ ] Configure necessary services
+- [ ] Deploy dashboard to staging
+  - [ ] Test in staging environment
+  - [ ] Fix any issues found
+- [ ] Deploy to production
+  - [ ] Monitor for issues post-deployment
+  - [ ] Ensure all functionalities work as expected
 
-Documentation (#documentation)
-------------------------------
+## Documentation (#documentation)
 
--   [ ] Write user manual for JMS Admin
-    -   [ ] Dashboard overview
-    -   [ ] How to retry a FAILED Job
-    -   [ ] How to delete a Job
--   [ ] Technical documentation for developers
-    -   [ ] API endpoints
-    -   [ ] UI components
-    -   [ ] Testing procedures
+- [ ] Write user manual for JMS Admin
+  - [ ] Dashboard overview
+  - [ ] How to retry a FAILED Job
+  - [ ] How to delete a Job
+- [ ] Technical documentation for developers
+  - [ ] API endpoints
+  - [ ] UI components
+  - [ ] Testing procedures
 
 ### Key Interactions
 
@@ -204,8 +197,7 @@ Retry/Delete Functionality:
   {
     "title": "Data Processing",
     "description": "Processing customer data."
-  } 
-
+  }
   ```
 
 - **Response**:
@@ -213,28 +205,30 @@ Retry/Delete Functionality:
   - **201 Created** -- Returns the created job object.
   - **Example**:
 
-    `{
-  "id": 1,
-  "title": "Data Processing",
-  "description": "Processing customer data.",
-  "status": "QUEUED",
-  "createdAt": "2024-09-20T10:00:00Z",
-  "updatedAt": "2024-09-20T10:00:00Z"
-}`
+        `{
+
+    "id": 1,
+    "title": "Data Processing",
+    "description": "Processing customer data.",
+    "status": "QUEUED",
+    "createdAt": "2024-09-20T10:00:00Z",
+    "updatedAt": "2024-09-20T10:00:00Z"
+    }`
 
 - **Error Responses**:
 
   - **400 Bad Request** -- If validation fails.
   - **Example**:
 
-    `{
-  "error": [
+        `{
+
+    "error": [
     {
-      "path": ["title"],
-      "message": "Title is required"
+    "path": ["title"],
+    "message": "Title is required"
     }
-  ]
-}`
+    ]
+    }`
 
 ---
 
@@ -263,14 +257,15 @@ Retry/Delete Functionality:
   - **200 OK** -- Returns the updated job object.
   - **Example**:
 
-    `{
-  "id": 1,
-  "title": "Data Processing",
-  "description": "Processing customer data.",
-  "status": "RUNNING",
-  "createdAt": "2024-09-20T10:00:00Z",
-  "updatedAt": "2024-09-21T12:00:00Z"
-}`
+        `{
+
+    "id": 1,
+    "title": "Data Processing",
+    "description": "Processing customer data.",
+    "status": "RUNNING",
+    "createdAt": "2024-09-20T10:00:00Z",
+    "updatedAt": "2024-09-21T12:00:00Z"
+    }`
 
 - **Error Responses**:
 
@@ -278,9 +273,10 @@ Retry/Delete Functionality:
   - **404 Not Found** -- If the job with the provided ID does not exist.
   - **Example**:
 
-    `{
-  "error": "Invalid job"
-}`
+        `{
+
+    "error": "Invalid job"
+    }`
 
 ---
 
@@ -299,18 +295,20 @@ Retry/Delete Functionality:
   - **200 OK** -- Returns a success message or an empty object.
   - **Example**:
 
-    `{
-  "message": "Job successfully deleted."
-}`
+        `{
+
+    "message": "Job successfully deleted."
+    }`
 
 - **Error Responses**:
 
   - **404 Not Found** -- If the job with the provided ID does not exist.
   - **Example**:
 
-    `{
-  "error": "Invalid job"
-}`
+        `{
+
+    "error": "Invalid job"
+    }`
 
 ---
 
