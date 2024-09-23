@@ -62,117 +62,105 @@ different types of jobs.
 
 ## System Design:
 
-------------------------
-|
-|-- Admin Dashboard Setup (#dashboard)
-|   |
-|   |-- Design the dashboard layout
-|   |   |-- Create wireframes
-|   |   |-- Get feedback from stakeholders
-|   |
-|   |-- Implement color-coding for Job statuses
-|   |   |-- Define color codes for QUEUED, RUNNING, SUCCESS, FAILED
-|   |
-|   |-- Develop UI components
-|   |   |-- Job listing table
-|   |   |-- Job details modal
-|   |
-|   |-- Integrate with JMS API
-|       |-- Fetch last 10 Jobs
-|       |-- Display Job statuses
-|
-|-- Job Listing Actions (#job-listing)
-|   |
-|   |-- Display last 10 Jobs with statuses
-|   |   |-- Fetch Jobs from JMS API
-|   |   |-- Render Jobs in the listing table
-|   |
-|   |-- Implement click functionality to show Job details
-|   |   |-- Create modal window
-|   |   |-- Populate modal with Job details
-|   |
-|   |-- Retry a FAILED Job
-|   |   |-- Add retry button for FAILED status
-|   |   |-- Implement retry functionality
-|   |
-|   |-- Delete a Job with QUEUED or FAILED status
-|       |-- Add delete button for QUEUED and FAILED status
-|       |-- Implement delete functionality
-|
-|-- Job Details Modal Actions (#job-details)
-|   |
-|   |-- Display Job details in modal
-|   |   |-- Fetch Job details from JMS API
-|   |   |-- Show Job status
-|   |
-|   |-- Retry a FAILED Job from modal
-|   |   |-- Add retry button for FAILED status
-|   |   |-- Implement retry functionality
-|   |
-|   |-- Delete a QUEUED or FAILED Job from modal
-|       |-- Add delete button for QUEUED and FAILED status
-|       |-- Implement delete functionality
-|
-|-- API Integration Tasks (#api-integration)
-|   |
-|   |-- Fetch last 10 Jobs
-|   |   |-- Create API endpoint for fetching Jobs
-|   |   |-- Parse response and display in the dashboard
-|   |
-|   |-- Query Job status
-|   |   |-- Create API endpoint for querying Job status
-|   |   |-- Update status in the UI
-|   |
-|   |-- Retry a FAILED Job
-|   |   |-- Create API endpoint for retrying Job
-|   |   |-- Handle API response and update UI
-|   |
-|   |-- Delete a Job
-|       |-- Create API endpoint for deleting Job
-|       |-- Handle API response and update UI
-|
-|-- Testing and Validation (#testing)
-|   |
-|   |-- Unit tests for UI components
-|   |   |-- Job listing table
-|   |   |-- Job details modal
-|   |
-|   |-- Integration tests for API endpoints
-|   |   |-- Fetching Jobs
-|   |   |-- Querying Job status
-|   |   |-- Retrying a Job
-|   |   |-- Deleting a Job
-|   |
-|   |-- User acceptance testing
-|       |-- Test dashboard with JMS Admin
-|       |-- Gather feedback and make necessary adjustments
-|
-|-- Deployment Plan (#deployment)
-|   |
-|   |-- Prepare deployment environment
-|   |   |-- Set up staging server
-|   |   |-- Configure necessary services
-|   |
-|   |-- Deploy dashboard to staging
-|   |   |-- Test in staging environment
-|   |   |-- Fix any issues found
-|   |
-|   |-- Deploy to production
-|       |-- Monitor for issues post-deployment
-|       |-- Ensure all functionalities work as expected
-|
-|-- Documentation (#documentation)
-    |
-    |-- Write user manual for JMS Admin
-    |   |-- Dashboard overview
-    |   |-- How to retry a FAILED Job
-    |   |-- How to delete a Job
-    |
-    |-- Technical documentation for developers
-        |-- API endpoints
-        |-- UI components
-        |-- Testing procedures
+Admin Dashboard Setup (#dashboard)
+----------------------------------
 
+-   [ ] Design the dashboard layout
+    -   [ ] Create wireframes
+    -   [ ] Get feedback from stakeholders
+-   [ ] Implement color-coding for Job statuses
+    -   [ ] Define color codes for QUEUED, RUNNING, SUCCESS, FAILED
+-   [ ] Develop UI components
+    -   [ ] Job listing table
+    -   [ ] Job details modal
+-   [ ] Integrate with JMS API
+    -   [ ] Fetch last 10 Jobs
+    -   [ ] Display Job statuses
+
+Job Listing Actions (#job-listing)
+----------------------------------
+
+-   [ ] Display last 10 Jobs with statuses
+    -   [ ] Fetch Jobs from JMS API
+    -   [ ] Render Jobs in the listing table
+-   [ ] Implement click functionality to show Job details
+    -   [ ] Create modal window
+    -   [ ] Populate modal with Job details
+-   [ ] Retry a FAILED Job
+    -   [ ] Add retry button for FAILED status
+    -   [ ] Implement retry functionality
+-   [ ] Delete a Job with QUEUED or FAILED status
+    -   [ ] Add delete button for QUEUED and FAILED status
+    -   [ ] Implement delete functionality
+
+Job Details Modal Actions (#job-details)
+----------------------------------------
+
+-   [ ] Display Job details in modal
+    -   [ ] Fetch Job details from JMS API
+    -   [ ] Show Job status
+-   [ ] Retry a FAILED Job from modal
+    -   [ ] Add retry button for FAILED status
+    -   [ ] Implement retry functionality
+-   [ ] Delete a QUEUED or FAILED Job from modal
+    -   [ ] Add delete button for QUEUED and FAILED status
+    -   [ ] Implement delete functionality
+
+API Integration Tasks (#api-integration)
+----------------------------------------
+
+-   [ ] Fetch last 10 Jobs
+    -   [ ] Create API endpoint for fetching Jobs
+    -   [ ] Parse response and display in the dashboard
+-   [ ] Query Job status
+    -   [ ] Create API endpoint for querying Job status
+    -   [ ] Update status in the UI
+-   [ ] Retry a FAILED Job
+    -   [ ] Create API endpoint for retrying Job
+    -   [ ] Handle API response and update UI
+-   [ ] Delete a Job
+    -   [ ] Create API endpoint for deleting Job
+    -   [ ] Handle API response and update UI
+
+Testing and Validation (#testing)
+---------------------------------
+
+-   [ ] Unit tests for UI components
+    -   [ ] Job listing table
+    -   [ ] Job details modal
+-   [ ] Integration tests for API endpoints
+    -   [ ] Fetching Jobs
+    -   [ ] Querying Job status
+    -   [ ] Retrying a Job
+    -   [ ] Deleting a Job
+-   [ ] User acceptance testing
+    -   [ ] Test dashboard with JMS Admin
+    -   [ ] Gather feedback and make necessary adjustments
+
+Deployment Plan (#deployment)
+-----------------------------
+
+-   [ ] Prepare deployment environment
+    -   [ ] Set up staging server
+    -   [ ] Configure necessary services
+-   [ ] Deploy dashboard to staging
+    -   [ ] Test in staging environment
+    -   [ ] Fix any issues found
+-   [ ] Deploy to production
+    -   [ ] Monitor for issues post-deployment
+    -   [ ] Ensure all functionalities work as expected
+
+Documentation (#documentation)
+------------------------------
+
+-   [ ] Write user manual for JMS Admin
+    -   [ ] Dashboard overview
+    -   [ ] How to retry a FAILED Job
+    -   [ ] How to delete a Job
+-   [ ] Technical documentation for developers
+    -   [ ] API endpoints
+    -   [ ] UI components
+    -   [ ] Testing procedures
 
 ### Key Interactions
 
