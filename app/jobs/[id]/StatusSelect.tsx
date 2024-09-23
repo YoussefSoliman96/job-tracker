@@ -2,7 +2,7 @@
 import { Job } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 
 const StatusSelect = ({ job }: Props) => {
   const router = useRouter();
-
+  const currentPath = usePathname() + "?" + useSearchParams();
   const changeStatus = (status: string) => {
     axios
       .patch("/api/jobs/" + job.id, {
@@ -20,7 +20,7 @@ const StatusSelect = ({ job }: Props) => {
       .catch(() => {
         toast.error("Changes could not be saved");
       });
-    router.push("/jobs/" + job.id);
+    router.push(currentPath);
     router.refresh();
   };
 
