@@ -61,7 +61,7 @@ different types of jobs.
 - Pascal Case
 
 ## System Design:
-
+`{
 +------------------------+ +--------------------------+
 | | Fetch | |
 | Job Listing Component | <-------- | Mock API (Express)|
@@ -83,6 +83,7 @@ different types of jobs.
 | Job Details Modal |  
 | |  
 +--------------------------+
+}`
 
 ### Key Interactions
 
