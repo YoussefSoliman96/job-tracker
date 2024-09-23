@@ -56,6 +56,39 @@ different types of jobs.
 - Client side Validation
 - Dark Mode
 
+## Dependencies
+
+### Core Dependencies
+
+- `@hookform/resolvers`: ^3.9.0
+- `@prisma/client`: ^5.19.1
+- `@radix-ui/react-icons`: ^1.3.0
+- `@radix-ui/themes`: ^3.1.3
+- `axios`: ^1.7.7
+- `classnames`: ^2.5.1
+- `delay`: ^6.0.0
+- `next`: 14.2.13
+- `prisma`: ^5.19.1
+- `react`: ^18
+- `react-dom`: ^18
+- `react-hook-form`: ^7.53.0
+- `react-hot-toast`: ^2.4.1
+- `react-icons`: ^5.3.0
+- `react-loading-skeleton`: ^3.4.0
+- `recharts`: ^2.13.0-alpha.5
+- `zod`: ^3.23.8
+
+### Development Dependencies
+
+- `@types/node`: ^20
+- `@types/react`: ^18
+- `@types/react-dom`: ^18
+- `eslint`: ^8
+- `eslint-config-next`: 14.2.13
+- `postcss`: ^8
+- `tailwindcss`: ^3.4.1
+- `typescript`: ^5
+
 ## Code Style:
 
 - Prettier
@@ -202,36 +235,37 @@ Retry/Delete Functionality:
   ```
 
 - **Response**:
-   **201 Created** -- Returns the created job object.
+  **201 Created** -- Returns the created job object.
   - **Example**:
- ```json
-  {
 
-    "id": 1,
-    "title": "Data Processing",
-    "description": "Processing customer data.",
-    "status": "QUEUED",
-    "createdAt": "2024-09-20T10:00:00Z",
-    "updatedAt": "2024-09-20T10:00:00Z"
+```json
  {
-  ```
-    
+
+   "id": 1,
+   "title": "Data Processing",
+   "description": "Processing customer data.",
+   "status": "QUEUED",
+   "createdAt": "2024-09-20T10:00:00Z",
+   "updatedAt": "2024-09-20T10:00:00Z"
+{
+```
 
 - **Error Responses**:
 
   - **400 Bad Request** -- If validation fails.
   - **Example**:
-```json
-        {
 
-    "error": [
+```json
+{
+  "error": [
     {
-    "path": ["title"],
-    "message": "Title is required"
+      "path": ["title"],
+      "message": "Title is required"
     }
-    ]
-    }
+  ]
+}
 ```
+
 ---
 
 ### **2\. Retry Job**
@@ -258,17 +292,16 @@ Retry/Delete Functionality:
 
   - **200 OK** -- Returns the updated job object.
   - **Example**:
+
 ```json
-
 {
-
-    "id": 1,
-    "title": "Data Processing",
-    "description": "Processing customer data.",
-    "status": "RUNNING",
-    "createdAt": "2024-09-20T10:00:00Z",
-    "updatedAt": "2024-09-21T12:00:00Z"
-    }
+  "id": 1,
+  "title": "Data Processing",
+  "description": "Processing customer data.",
+  "status": "RUNNING",
+  "createdAt": "2024-09-20T10:00:00Z",
+  "updatedAt": "2024-09-21T12:00:00Z"
+}
 ```
 
 - **Error Responses**:
@@ -276,12 +309,11 @@ Retry/Delete Functionality:
   - **400 Bad Request** -- If the input validation fails.
   - **404 Not Found** -- If the job with the provided ID does not exist.
   - **Example**:
+
 ```json
-
-        {
-
-    "error": "Invalid job"
-    }
+{
+  "error": "Invalid job"
+}
 ```
 
 ---
@@ -300,24 +332,22 @@ Retry/Delete Functionality:
 
   - **200 OK** -- Returns a success message or an empty object.
   - **Example**:
+
 ```json
-
-        {
-
-    "message": "Job successfully deleted."
-    }
+{
+  "message": "Job successfully deleted."
+}
 ```
 
 - **Error Responses**:
 
   - **404 Not Found** -- If the job with the provided ID does not exist.
   - **Example**:
-    
-```json
-        {
 
-    "error": "Invalid job"
-    }
+```json
+{
+  "error": "Invalid job"
+}
 ```
 
 ---
