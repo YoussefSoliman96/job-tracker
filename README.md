@@ -314,7 +314,7 @@ Retry/Delete Functionality:
 
 ### Job List
 
-![Job List](public/assests/issue-list.png)
+![Job List](public/list.png)
 
 #### 2- As a JMS Admin, I can click on any Job in the listing and see its details (in a Modal window)
 
