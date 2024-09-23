@@ -18,7 +18,6 @@ const RetryButton = ({ job, size }: Props) => {
   const [error, setError] = useState(false);
   const [isRetrying, setRetrying] = useState(false);
 
-  console.log(currentPath);
   const retryJob = async () => {
     try {
       setRetrying(true);
