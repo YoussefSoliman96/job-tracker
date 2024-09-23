@@ -1,11 +1,11 @@
-import { Table } from "@radix-ui/themes";
+import { Box, Flex, Table } from "@radix-ui/themes";
 import Skeleton from "../../components/Skeleton";
 import JobActions from "./JobActions";
 
 const LoadingJobsPage = () => {
   const jobs = [1, 2, 3, 4, 5, 6, 7];
   return (
-    <div>
+    <Flex direction="column" gap="3">
       <JobActions />
       <Table.Root variant="surface">
         <Table.Header>
@@ -24,9 +24,9 @@ const LoadingJobsPage = () => {
             <Table.Row key={job}>
               <Table.Cell>
                 <Skeleton />
-                <div className="block md:hidden">
+                <Box className="block md:hidden">
                   <Skeleton />
-                </div>
+                </Box>
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
                 <Skeleton />
@@ -38,7 +38,7 @@ const LoadingJobsPage = () => {
           ))}
         </Table.Body>
       </Table.Root>
-    </div>
+    </Flex>
   );
 };
 

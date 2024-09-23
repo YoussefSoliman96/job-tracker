@@ -31,6 +31,8 @@ export default async function Home() {
   );
 }
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Job Tracker - Dashboard",
   description: "View a summary of jobs",
