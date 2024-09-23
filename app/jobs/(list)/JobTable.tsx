@@ -1,18 +1,16 @@
-import { Flex, Table } from "@radix-ui/themes";
-import React from "react";
-import NextLink from "next/link";
-import { ArrowUpIcon } from "@radix-ui/react-icons";
 import { JobStatusBadge, Link } from "@/app/components";
-
 import { Job, Status } from "@prisma/client";
-import StatusSelect from "../[id]/StatusSelect";
-import ModalButton from "../_components/ModalButton";
+import { ArrowUpIcon } from "@radix-ui/react-icons";
+import { Flex, Table } from "@radix-ui/themes";
+import NextLink from "next/link";
 import DeleteJobButton from "../[id]/DeleteJobButton";
+import ModalButton from "../_components/ModalButton";
 import RetryButton from "../_components/RetryButton";
 
 export interface JobQuery {
   status: Status;
   orderBy: keyof Job;
+  sortDirection: "asc" | "desc";
   page: string;
 }
 
@@ -22,6 +20,10 @@ interface Props {
 }
 
 const JobTable = ({ searchParams, jobs }: Props) => {
+  const getNextSortDirection = (currentDirection: "asc" | "desc") => {
+    return currentDirection === "asc" ? "desc" : "asc";
+  };
+
   return (
     <Table.Root variant="surface">
       <Table.Header>
@@ -33,12 +35,23 @@ const JobTable = ({ searchParams, jobs }: Props) => {
             >
               <NextLink
                 href={{
-                  query: { ...searchParams, orderBy: column.value },
+                  query: {
+                    ...searchParams,
+                    orderBy: column.value,
+                    sortDirection:
+                      column.value === searchParams.orderBy
+                        ? getNextSortDirection(searchParams.sortDirection)
+                        : "asc",
+                  },
                 }}
               >
                 {column.label}
                 {column.value === searchParams.orderBy && (
-                  <ArrowUpIcon className="inline" />
+                  <ArrowUpIcon
+                    className={`inline ${
+                      searchParams.sortDirection === "desc" ? "rotate-180" : ""
+                    }`}
+                  />
                 )}
               </NextLink>
             </Table.ColumnHeaderCell>
@@ -64,13 +77,11 @@ const JobTable = ({ searchParams, jobs }: Props) => {
             <Table.Cell>
               <Flex justify="between" className="items-center">
                 <ModalButton job={job} />
-
                 <DeleteJobButton
                   jobId={job.id}
                   size="1"
                   jobStatus={job.status}
                 />
-
                 <RetryButton job={job} size="1" />
               </Flex>
             </Table.Cell>

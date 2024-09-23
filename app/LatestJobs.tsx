@@ -1,10 +1,9 @@
 import prisma from "@/prisma/client";
-import { Box, Card, Flex, Heading, Table } from "@radix-ui/themes";
-import React from "react";
-import { JobStatusBadge } from "./components";
+import { Card, Flex, Heading, Table } from "@radix-ui/themes";
 import Link from "next/link";
-import ModalButton from "./jobs/_components/ModalButton";
+import { JobStatusBadge } from "./components";
 import DeleteJobButton from "./jobs/[id]/DeleteJobButton";
+import ModalButton from "./jobs/_components/ModalButton";
 import RetryButton from "./jobs/_components/RetryButton";
 
 const LatestJobs = async () => {

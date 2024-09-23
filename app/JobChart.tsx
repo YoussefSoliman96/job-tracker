@@ -1,14 +1,7 @@
 "use client";
 
 import { Card } from "@radix-ui/themes";
-import {
-  ResponsiveContainer,
-  BarChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-  Bar,
-} from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
 interface Props {
   queued: number;

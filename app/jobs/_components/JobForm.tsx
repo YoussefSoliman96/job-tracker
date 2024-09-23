@@ -5,10 +5,10 @@ import Spinner from "@/app/components/Spinner";
 import { jobSchema } from "@/app/validationSchemas";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Callout, Text, TextArea, TextField } from "@radix-ui/themes";
+import { Button, Callout, TextArea, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 

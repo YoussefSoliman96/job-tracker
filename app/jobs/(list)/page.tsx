@@ -19,11 +19,12 @@ const JobsPage = async ({ searchParams }: Props) => {
   const where = { status };
 
   const orderBy = columnNames.includes(searchParams.orderBy)
-    ? { [searchParams.orderBy]: "asc" }
+    ? { [searchParams.orderBy]: searchParams.sortDirection || "asc" }
     : undefined;
 
   const page = parseInt(searchParams.page) || 1;
   const pageSize = 10;
+
   const jobs = await prisma.job.findMany({
     where,
     orderBy,
