@@ -54,6 +54,7 @@ different types of jobs.
 - REST API
 - Server side Validation
 - Client side Validation
+- Dark Mode
 
 ## Code Style:
 
@@ -420,3 +421,7 @@ Retry/Delete Functionality:
 #### Queued job modal
 
 ![Queued Job](public/queued.png)
+
+### Mobile view
+
+![Mobile View](public/mobile.png)
